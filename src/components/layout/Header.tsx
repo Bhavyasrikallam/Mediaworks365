@@ -170,7 +170,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link href={ctas.consultation.href} className={buttonClasses("primary", "hidden min-h-10 px-5 py-2 text-sm sm:inline-flex sm:text-sm")}>
+          <Link href={ctas.consultation.href} className={buttonClasses("primary", "hidden sm:inline-flex", "sm")}>
             Free Consultation
           </Link>
           <button

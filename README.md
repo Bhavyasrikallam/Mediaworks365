@@ -89,6 +89,10 @@ The contact form posts JSON to `/api/contact`, which validates the payload with 
 | Development                     | No                                        | Logs a redacted summary (no personal data) to the console; returns success. |
 | Production (`NODE_ENV=production`) | No                                     | Returns **503** and logs a configuration error — leads are never silently dropped. |
 
+### Monitoring
+
+`GET /api/health` returns `{ status: "ok", leadDelivery: "configured" | "not_configured" }` (no secrets). Point an uptime monitor at it and alert when it fails or reports `not_configured` in production.
+
 ## Security & SEO defaults
 
 - Security headers for all routes are set in `next.config.ts`: a static Content-Security-Policy (no nonces, so pages stay static), HSTS (production), `X-Frame-Options: DENY`, `nosniff`, `Referrer-Policy` and a restrictive `Permissions-Policy`. If you add a third-party script, font, image host or API, update the CSP.

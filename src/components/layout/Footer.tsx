@@ -16,7 +16,7 @@ export function Footer() {
             <Logo />
             <p className="mt-5 max-w-sm text-sm leading-relaxed">{site.description}</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <ButtonLink href={ctas.audit.href} className="min-h-11 px-5 py-2 text-sm sm:text-sm">
+              <ButtonLink href={ctas.audit.href} size="sm">
                 {ctas.audit.label}
               </ButtonLink>
             </div>

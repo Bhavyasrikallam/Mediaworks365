@@ -90,29 +90,43 @@ const buttonVariants: Record<ButtonVariant, string> = {
 };
 
 const buttonBase =
-  "group inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-200 sm:text-base";
+  "group items-center justify-center gap-2 rounded-full text-center font-semibold transition-colors duration-200";
+
+type ButtonSize = "sm" | "md";
+
+const buttonSizes: Record<ButtonSize, string> = {
+  sm: "min-h-11 px-5 py-2 text-sm",
+  md: "min-h-12 px-6 py-3 text-sm sm:text-base",
+};
 
 export function ButtonLink({
   href,
   variant = "primary",
+  size = "md",
   arrow = false,
   className,
   children,
 }: {
   href: string;
   variant?: ButtonVariant;
+  size?: ButtonSize;
   arrow?: boolean;
   className?: string;
   children: React.ReactNode;
 }) {
   return (
-    <Link href={href} className={cn(buttonBase, buttonVariants[variant], className)}>
+    <Link href={href} className={buttonClasses(variant, className, size)}>
       {children}
       {arrow && <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-0.5" />}
     </Link>
   );
 }
 
-export function buttonClasses(variant: ButtonVariant = "primary", className?: string) {
-  return cn(buttonBase, buttonVariants[variant], className);
+/**
+ * Button styling for links and <button>s. `display` is not set here so callers
+ * can choose it without conflicting utilities (defaults to inline-flex).
+ */
+export function buttonClasses(variant: ButtonVariant = "primary", className?: string, size: ButtonSize = "md") {
+  const hasDisplay = /(^|\s)(hidden|flex|inline-flex|block)(\s|$)/.test(className ?? "");
+  return cn(buttonBase, !hasDisplay && "inline-flex", buttonSizes[size], buttonVariants[variant], className);
 }
