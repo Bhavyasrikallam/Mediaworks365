@@ -379,6 +379,8 @@ export const portfolio = {
     { title: "Mall Activation Tour", category: "On Ground Activities", service: "on-ground-activations", body: "Multi-week field team deployment with live demonstrations and on-site data capture." },
     { title: "Campus Ambassador Program", category: "On Ground Activities", service: "on-ground-activations", body: "Trained ambassadors running sampling and engagement where the audience lives and learns." },
   ],
+  // Shown under the gallery until rights-cleared case studies replace the showcases.
+  showcaseNote: "Showcases illustrate the types of work we deliver. Detailed client case studies are coming soon.",
   impactTitle: "Portfolio Impact Summary",
 } as const;
 
